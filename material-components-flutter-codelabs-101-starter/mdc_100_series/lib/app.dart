@@ -68,7 +68,9 @@ ThemeData _buildShrineTheme() {
     primaryIconTheme: base.iconTheme.copyWith(
         color: kShrineBrown900
     ),
-    // TODO: Decorate the inputs (103)
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(),
+    ),
   );
 }
 
