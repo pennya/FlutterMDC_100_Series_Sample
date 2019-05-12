@@ -14,8 +14,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'backdrop.dart';
 import 'home.dart';
 import 'login.dart';
+import 'model/product.dart';
 import 'color.dart';
 import 'supplemental/cut_corners_border.dart';
 
@@ -25,7 +27,16 @@ class ShrineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: HomePage(),
+      home: Backdrop(
+        // TODO: Make currentCategory field take _currentCategory (104)
+        currentCategory: Category.all,
+        // TODO: Pass _currentCategory for frontLayer (104)
+        frontLayer: HomePage(),
+        // TODO: Change backLayer field value to CategoryMenuPage (104)
+        backLayer: Container(color: kShrinePink100),
+        frontTitle: Text('SHRINE'),
+        backTitle: Text('MENU'),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       theme: _kShrineTheme,
@@ -51,18 +62,18 @@ final ThemeData _kShrineTheme = _buildShrineTheme();
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    primaryColor: kShrinePurple,
+    primaryColor: kShrinePink100,
     buttonTheme: base.buttonTheme.copyWith(
-        buttonColor: kShrinePurple,
+        buttonColor: kShrinePink100,
         textTheme: ButtonTextTheme.primary,
-        colorScheme: ColorScheme.light().copyWith(primary: kShrinePurple)
+        colorScheme: ColorScheme.light().copyWith(primary: kShrinePink100)
     ),
     scaffoldBackgroundColor: kShrineSurfaceWhite,
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
     primaryIconTheme: base.iconTheme.copyWith(
-        color: kShrineSurfaceWhite
+        color: kShrineBrown900
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: CutCornersBorder(),
